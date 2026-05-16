@@ -1,14 +1,14 @@
 import { Command } from "commander";
 import path from "path";
+import fs from "fs/promises";
 import { fileURLToPath } from "url";
 
-export const versionCommand = new Command("version").action(async () => {
-    const __filename = fileURLToPath(import.meta.url);
-    const __dirname = path.dirname(__filename);
-    const packageJsonPath = path.resolve(__dirname, "../../package.json");
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-    const fs = await import("fs").then(m => m.default || m);
-    const packageJson = JSON.parse(await fs.promises.readFile(packageJsonPath, "utf-8"));
+export const versionCommand = new Command("version").action(async () => {
+    const packageJsonPath = path.resolve(__dirname, "../../package.json");
+    const packageJson = JSON.parse(await fs.readFile(packageJsonPath, "utf-8"));
 
     console.log(packageJson.version);
 });
