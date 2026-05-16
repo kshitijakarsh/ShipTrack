@@ -1,0 +1,12 @@
+{
+  "name": "shiptrack",
+  "version": "1.0.0",
+  "description": "Deployment tracking CLI",
+  "type": "module",
+  "bin": {
+    "ship": "src/index.js"
+  },
+  "dependencies": {
+    "commander": "^14.0.3"
+  }
+}
